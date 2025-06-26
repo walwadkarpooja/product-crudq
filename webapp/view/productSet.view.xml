@@ -9,23 +9,37 @@
         <form:SimpleForm>
             <form:content>
                 <Label text="{i18n>productId}" />
-                <Input placeholder="Enter Product Id" suggestionItems="{/productSet}" showSuggestion="true" showClearIcon="true" submit="onSubmit" >
+                <Input placeholder="Enter Product Id" value="{jModel>/Productid}" suggestionItems="{/productSet}" showSuggestion="true" showClearIcon="true" submit="onSubmit" >
                     <suggestionItems >
                         <core:Item text="{Productid}"/>
                     </suggestionItems>
                 </Input>
-
-                <!-- <Text text="{jModel>/Productid}" id="prodVisible" /> -->
             </form:content>
         </form:SimpleForm>
-        <form:SimpleForm>
+        <form:SimpleForm visible="{= !!${jModel>/Productid} }">
             <form:content>
-                
-
                 <Label text="product id" id="prodVisible" />
-                <Input value="{jModel>/Productid}"/>
+                <Input value="{jModel>/Productid}" editable="{editModel>/isEditableField}"/>
+                <Label text="product Name" id="prodName" />
+                <Input value="{jModel>/Name}" editable="{editModel>/isEditableField}"/>
+                <Label text="Category" id="prodCategory" />
+                <Input value="{jModel>/Category}" editable="{editModel>/isEditableField}"/>
+                <Label text="Supplier name" id="prodSuppliername" />
+                <Input value="{jModel>/Suppliername}" editable="{editModel>/isEditableField}"/>
+                <Label text="Price" id="prodPrice" />
+                <Input value="{jModel>/Price}" editable="{editModel>/isEditableField}"/>
+                <Label text="Created Date" id="prodCreatedat" />
+                <DatePicker value="{jModel>/Createdat}" enabled="{editModel>/isEnabledField}"/>
             </form:content>
         </form:SimpleForm>
         </content>
+        <footer>
+            <Bar>
+                <contentMiddle >
+                    <Button id="saveBtn" text="Save" type="Default"/>
+                    <Button id="editBtn" text="Edit" type="Default" press="onEdit"/>
+                </contentMiddle>
+            </Bar>
+        </footer>
     </Page>
 </mvc:View>
